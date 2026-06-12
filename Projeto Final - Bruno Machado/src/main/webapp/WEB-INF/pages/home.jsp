@@ -6,7 +6,7 @@
 <head>
 
     <title>Catálogo</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/style.css'/>">
 
 </head>
 <body>
@@ -25,7 +25,7 @@
 
         <div class = "card-produto">
 
-            <img src = "${pageContext.request.contextPath}/img/${i.modelo}.jpg" alt = "imagem-produto">
+            <img src = "<c:url value='/img/${i.modelo}.jpg'/>" alt = "imagem-produto">
 
             <div class = "card-produto-texto">
 

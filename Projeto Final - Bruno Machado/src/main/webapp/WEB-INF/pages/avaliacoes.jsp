@@ -6,7 +6,7 @@
 <head>
 
     <title>Avaliações</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/style.css'/>">
 
 </head>
 <body>

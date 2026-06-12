@@ -5,29 +5,29 @@
 <html>
 <head>
 
-    <title>Cadastro</title>
+    <title>Login</title>
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/style.css'/>">
 
 </head>
 <body>
 
+
 <div class = "card-usuario">
 
-    <div class = "div-form">
-        <h2>ACESSAR</h2>
-        <form action = "cadastro" method = "post">
 
-            <label>Nome:</label><br>
-            <input type="text" name="nome" maxlength="50" required><br>
+    <div class = "div-form">
+
+        <h2>ACESSAR</h2>
+        <form action = "login" method = "post">
 
             <label>Email:</label><br>
-            <input type="email" name="email" maxlength="100" required><br>
+            <input type="email" name="email" required><br>
 
             <label>Senha:</label><br>
-            <input type="password" name="senha" maxlength="16" required><br>
+            <input type="password" name="senha" required><br>
 
-            <button type="submit">CADASTRAR</button><br>
-            <a href="/">JÁ TENHO CONTA</a><br>
+            <button type="submit">ENTRAR</button><br>
+            <a href="cadastro">CRIAR CONTA</a>
 
         </form>
 
