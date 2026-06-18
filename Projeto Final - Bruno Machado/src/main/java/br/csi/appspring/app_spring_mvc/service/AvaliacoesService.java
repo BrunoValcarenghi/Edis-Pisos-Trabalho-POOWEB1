@@ -46,4 +46,28 @@ public class AvaliacoesService {
 
     }
 
+    public Boolean editar(int id, String texto, int usuario_id) {
+
+        try {
+            AvaliacaoDAO dao = new AvaliacaoDAO();
+            return dao.editar(id, texto, usuario_id);
+        } catch (Exception e) {
+            System.out.println("erro editar avaliacao service");
+        }
+        return false;
+
+    }
+
+    public Boolean excluir(int id, int usuario_id) {
+
+        try {
+            AvaliacaoDAO dao = new AvaliacaoDAO();
+            return dao.excluir(id, usuario_id);
+        } catch (Exception e) {
+            System.out.println("erro excluir avaliacao service");
+        }
+        return false;
+
+    }
+
 }

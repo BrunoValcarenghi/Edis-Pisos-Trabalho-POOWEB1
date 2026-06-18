@@ -204,6 +204,7 @@ body{
 
 .card-avaliacao{
 
+    position: relative;
     padding: 10px;
     margin: 20px auto;
     background-color: var(--claro);
@@ -213,20 +214,24 @@ body{
     width: 70%;
     text-align: center;
 
-    input{
+    textarea{
 
         margin: 10px;
         width: 90%;
         height: 80px;
         border: var(--escuro) 3px solid;
         border-radius: 10px;
+        resize: vertical;
 
     }
 
-    button{
+    button, .botao-avaliacao{
 
         font-weight: bold;
         cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         height: 40px;
         font-size: 20px;
         width: 150px;
@@ -234,6 +239,44 @@ body{
         border: red solid 3px;
         border-radius: 10px;
         background-color: var(--claro);
+        text-decoration: none;
+
+    }
+
+    .texto-avaliacao, .form-editar-avaliacao{
+
+        padding-right: 90px;
+
+    }
+
+    .acoes-avaliacao{
+
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+
+    }
+
+    .botao-emoji{
+
+        width: 38px;
+        height: 38px;
+        font-size: 22px;
+        border: none;
+        background: transparent;
+        padding: 0;
+        color: inherit;
+
+    }
+
+    .botao-emoji:hover{
+
+        background: none;
+        border: none;
+        font-size: 24px;
 
     }
 
@@ -283,4 +326,11 @@ body{
         font-size: 24px;
     }
 
+}
+/*
+.crud-avaliacao{
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

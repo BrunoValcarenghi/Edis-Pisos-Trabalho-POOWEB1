@@ -21,7 +21,7 @@ public class AvaliacaoDAO {
 
         ArrayList<Avaliacao> avaliacoes = new ArrayList<>();
 
-        ResultSet rs = stnt.executeQuery("select * from usuario, avaliacao where usuario.id = avaliacao.usuario_id;");
+        ResultSet rs = stnt.executeQuery("select a.id, a.usuario_id, a.texto, u.nome from avaliacao a inner join usuario u on u.id = a.usuario_id;");
 
         while(rs.next()){
 
@@ -61,6 +61,37 @@ public class AvaliacaoDAO {
         System.out.println("[avaliacao dao] inseriu avaliacao");
 
         return true;
+
+    }
+
+    public boolean editar(int id, String texto, int usuario_id) throws SQLException {
+
+        String sql = "UPDATE avaliacao SET texto = ? WHERE id = ? AND usuario_id = ?";
+
+        try (Connection conn = ConexaoDB.getConexao();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, texto);
+            stmt.setInt(2, id);
+            stmt.setInt(3, usuario_id);
+
+            return stmt.executeUpdate() > 0;
+        }
+
+    }
+
+    public boolean excluir(int id, int usuario_id) throws SQLException {
+
+        String sql = "DELETE FROM avaliacao WHERE id = ? AND usuario_id = ?";
+
+        try (Connection conn = ConexaoDB.getConexao();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, id);
+            stmt.setInt(2, usuario_id);
+
+            return stmt.executeUpdate() > 0;
+        }
 
     }
 

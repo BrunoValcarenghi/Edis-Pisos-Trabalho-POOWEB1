@@ -1,6 +1,7 @@
 package br.csi.appspring.app_spring_mvc.controller;
 
 import br.csi.appspring.app_spring_mvc.model.Avaliacao;
+import br.csi.appspring.app_spring_mvc.model.Usuario;
 import br.csi.appspring.app_spring_mvc.service.AvaliacoesService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,6 @@ public class AvaliacoesController {
 
     @PostMapping("/avaliacao")
     public String publicarAvaliacao(@RequestParam("texto") String texto,
-                                    @RequestParam("usuario_id") String usuarioId,
                                     HttpSession session,
                                     Model model) {
 
@@ -42,6 +42,9 @@ public class AvaliacoesController {
         if (session == null || session.getAttribute("user") == null) {
             return "redirect:/index.jsp";
         }
+
+        Usuario user = (Usuario) session.getAttribute("user");
+        String usuarioId = String.valueOf(user.getId());
 
         System.out.println("texto: " + texto + "\nid: " + usuarioId);
 
@@ -53,6 +56,47 @@ public class AvaliacoesController {
             model.addAttribute("erro", "OCORREU UM ERRO INESPERADO");
         }
 
+        return "avaliacoes";
+    }
+
+    @PostMapping("/editaravaliacao")
+    public String editarAvaliacao(@RequestParam("id") int id,
+                                  @RequestParam("texto") String texto,
+                                  HttpSession session,
+                                  Model model) {
+
+        if (session == null || session.getAttribute("user") == null) {
+            return "redirect:/index.jsp";
+        }
+
+        Usuario user = (Usuario) session.getAttribute("user");
+
+        if (!avaliacoesService.editar(id, texto, user.getId())) {
+            model.addAttribute("erro", "Nao foi possivel editar esta avaliacao.");
+        }
+
+        ArrayList<Avaliacao> avaliacoes = avaliacoesService.getAvaliacoes();
+        model.addAttribute("avaliacoes", avaliacoes);
+        return "avaliacoes";
+    }
+
+    @PostMapping("/excluiravaliacao")
+    public String excluirAvaliacao(@RequestParam("id") int id,
+                                   HttpSession session,
+                                   Model model) {
+
+        if (session == null || session.getAttribute("user") == null) {
+            return "redirect:/index.jsp";
+        }
+
+        Usuario user = (Usuario) session.getAttribute("user");
+
+        if (!avaliacoesService.excluir(id, user.getId())) {
+            model.addAttribute("erro", "Nao foi possivel excluir esta avaliacao.");
+        }
+
+        ArrayList<Avaliacao> avaliacoes = avaliacoesService.getAvaliacoes();
+        model.addAttribute("avaliacoes", avaliacoes);
         return "avaliacoes";
     }
 }
