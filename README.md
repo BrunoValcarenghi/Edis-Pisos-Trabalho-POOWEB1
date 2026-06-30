@@ -1,7 +1,16 @@
-# PROJETO FINAL DA DISCIPLINA
-# Edis Pisos
+# PROJETO FINAL DA DISCIPLINA: EDIS PISOS
 
-## Base de dados
+## Instruções de Uso
+
+### Clone esse repositório 
+
+```bash
+
+git clone https://github.com/BrunoValcarenghi/Edis-Pisos-Trabalho-POOWEB1
+
+```
+
+### Base de dados
 
 Para que o projeto funcione corretamente, siga os passos abaixo para configurar o banco de dados:
 
@@ -62,3 +71,37 @@ Para que o projeto funcione corretamente, siga os passos abaixo para configurar 
 	 	 ('Tarket', 'Ambienta'),
 	 	 ('Belgotex', 'Jazz'),
 	 	 ('Belgotex', 'Castilla');
+
+### Modelo Er
+
+```mermaid
+erDiagram
+    USUARIO ||--o{ AVALIACAO: ""
+    USUARIO ||--o{ FAVORITO: ""
+    PRODUTO ||--o{ FAVORITO: ""
+
+    USUARIO {
+        int id PK
+        varchar nome
+        varchar email
+        varchar senha
+    }
+
+    AVALIACAO {
+        int id PK
+        varchar texto
+        int usuario_id FK
+    }
+
+    PRODUTO {
+        int id PK
+        varchar marca
+        varchar modelo
+    }
+
+    FAVORITO {
+        int id PK
+        int usuario_id FK
+        int produto_id FK
+    }
+```
